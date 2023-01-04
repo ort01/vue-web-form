@@ -4,9 +4,16 @@
     <input type="email" required v-model="email" />
     <label>Password:</label>
     <input type="password" required v-model="password" />
+    <label>Role:</label>
+    <select v-model="role">
+      <option value="Developer">Web Developer</option>
+      <option value="Designer">Web Designer</option>
+      <option value="Manager">Project Manager</option>
+    </select>
   </form>
   <p>Email: {{ email }}</p>
   <p>Password: {{ password }}</p>
+  <p>Role: {{ role }}</p>
 </template>
 
 <script>
@@ -15,8 +22,9 @@ export default {
   props: [""],
   data: () => {
     return {
-      email: "mario",
+      email: "",
       password: "",
+      role: "",
     };
   },
 };
@@ -41,7 +49,8 @@ label {
   letter-spacing: 1px;
   font-weight: bold;
 }
-input {
+input,
+select {
   display: block;
   padding: 10px 6px;
   width: 100%;
@@ -49,8 +58,10 @@ input {
   border: none;
   border-bottom: 1px solid #ddd;
   color: #555;
+  cursor: pointer;
 }
-input:focus {
+input:focus,
+select:focus {
   outline: none;
 }
 </style>
