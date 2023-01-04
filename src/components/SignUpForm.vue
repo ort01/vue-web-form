@@ -1,11 +1,13 @@
 <template>
   <form>
+    <!-- input text binding -->
     <label>Email:</label>
     <input type="email" required v-model="email" />
 
     <label>Password:</label>
     <input type="password" required v-model="password" />
 
+    <!-- select form field binding -->
     <label>Role:</label>
     <select v-model="role">
       <option value="Developer">Web Developer</option>
@@ -13,19 +15,34 @@
       <option value="Manager">Project Manager</option>
     </select>
 
+    <!-- single checkbox binding (true/false) -->
     <div class="terms">
       <input type="checkbox" v-model="terms" required />
       <label>Accept terms and conditions</label>
     </div>
 
-    <div>
-      <input type="checkbox" />
+    <!-- binding checkboxes with array (values => array) -->
+    <div class="names">
+      <div>
+        <input type="checkbox" value="Shaun" v-model="names" />
+        <label>Shaun</label>
+      </div>
+      <div>
+        <input type="checkbox" value="Jacob" v-model="names" />
+        <label>Jacob</label>
+      </div>
+      <div>
+        <input type="checkbox" value="Arthur" v-model="names" />
+        <label>Arthur</label>
+      </div>
     </div>
   </form>
+
   <p>Email: {{ email }}</p>
   <p>Password: {{ password }}</p>
   <p>Role: {{ role }}</p>
   <p>{{ terms }}</p>
+  <p>{{ names }}</p>
 </template>
 
 <script>
@@ -38,6 +55,7 @@ export default {
       password: "",
       role: "",
       terms: false,
+      names: [],
     };
   },
 };
