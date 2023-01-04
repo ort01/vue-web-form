@@ -40,7 +40,12 @@
     <!-- Keyboard events & modifiers -->
     <div class="skills">
       <input type="text" v-model="temporarySkill" @keyup="addSkill" />
-      <div v-for="skill in arrayOfSkills" :key="skill" class="skill">
+      <div
+        v-for="skill in arrayOfSkills"
+        :key="skill"
+        @click="deleteSkill(skill)"
+        class="skill"
+      >
         {{ skill }}
       </div>
     </div>
@@ -76,6 +81,11 @@ export default {
         }
         this.temporarySkill = "";
       }
+    },
+    deleteSkill(skill) {
+      this.arrayOfSkills = this.arrayOfSkills.filter((item) => {
+        return item != skill;
+      });
     },
   },
 };
@@ -123,12 +133,16 @@ input[type="checkbox"] {
   top: 2px;
 }
 .skill {
-  color: rgb(119, 119, 119);
-  display: block;
-  margin: 15px 0;
+  color: #777;
+  display: inline-block;
+  margin: 20px 10px 0 0;
+  padding: 6px 12px;
+  background: #eee;
+  border-radius: 12px;
   font-size: 0.8em;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: bold;
+  cursor: pointer;
 }
 </style>
