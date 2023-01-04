@@ -1,6 +1,6 @@
 <template>
   <form>
-    <!-- input text binding -->
+    <!-- input email binding -->
     <label>Email:</label>
     <input type="email" required v-model="email" />
 
@@ -21,7 +21,7 @@
       <label>Accept terms and conditions</label>
     </div>
 
-    <!-- binding checkboxes with array (values => array) -->
+    <!-- binding value of checkboxes with array (values => array) -->
     <div class="names">
       <div>
         <input type="checkbox" value="Shaun" v-model="names" />
@@ -34,6 +34,14 @@
       <div>
         <input type="checkbox" value="Arthur" v-model="names" />
         <label>Arthur</label>
+      </div>
+    </div>
+
+    <!-- Keyboard events & modifiers -->
+    <div class="skills">
+      <input type="text" v-model="temporarySkill" @keyup="addSkill" />
+      <div v-for="skill in arrayOfSkills" :key="skill" class="skill">
+        {{ skill }}
       </div>
     </div>
   </form>
@@ -56,7 +64,19 @@ export default {
       role: "",
       terms: false,
       names: [],
+      temporarySkill: "",
+      arrayOfSkills: [],
     };
+  },
+  methods: {
+    addSkill(e) {
+      if (e.key === "Enter" && this.temporarySkill) {
+        if (!this.arrayOfSkills.includes(this.temporarySkill)) {
+          this.arrayOfSkills.push(this.temporarySkill);
+        }
+        this.temporarySkill = "";
+      }
+    },
   },
 };
 </script>
@@ -101,5 +121,14 @@ input[type="checkbox"] {
   margin: 0 10px 0 0;
   position: relative;
   top: 2px;
+}
+.skill {
+  color: rgb(119, 119, 119);
+  display: block;
+  margin: 15px 0;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 </style>
